@@ -1,0 +1,34 @@
+.draggable-card {
+  width: 300px;
+  height: 150px;
+  background: var(--box);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  cursor: grab;
+  user-select: none;
+  touch-action: none;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 apps per row */
+  gap: 6px;
+  padding: 6px;
+}
+
+.draggable-card:active {
+  cursor: grabbing;
+}
+
+.draggable-card img {
+    width: 40px;
+    height: 40px;
+}
+
+.draggable-card button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  width: 70px;
+  height: 70px;
+  color: var(--text);
+}
