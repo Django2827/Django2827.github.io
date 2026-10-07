@@ -1,4 +1,4 @@
-
+import RainOverlay from './components/RainBackground/RainBackground'
 import { useState } from 'react'
 import { DndContext, useSensor, useSensors, PointerSensor } from '@dnd-kit/core'
 import DraggableCard from './components/DraggableCard'
@@ -23,13 +23,15 @@ function App() {
   return (
     
   
-
+    <>
+    <RainOverlay />
     <DndContext sensors={sensors} onDragEnd={handleDragEnd}>
       <div style={{ padding: '40px' }}>
         <h1 style={{ fontFamily: "'Doto', monospace", fontWeight: 900 }}>Gabe Capron's Portfolio</h1>
         <DraggableCard id="home-card" position={position}/>
       </div>
     </DndContext>
+    </>
   )
 }
 

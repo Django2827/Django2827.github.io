@@ -1,0 +1,28 @@
+.rain-overlay {
+  position: fixed;
+  inset: 0 -150px;          /* extra width so the skew doesn't leave bare corners */
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+  transform: skewX(-7deg);
+}
+
+.drop {
+  position: absolute;
+  top: -60px;
+  width: var(--w);
+  height: var(--h);
+  border-radius: 999px;
+  background: var(--rain);
+  opacity: var(--o);
+  animation: fall var(--d) linear var(--delay) infinite;
+  will-change: transform;
+}
+
+@keyframes fall {
+  to { transform: translateY(calc(100vh + 80px)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drop { animation: none; }
+}

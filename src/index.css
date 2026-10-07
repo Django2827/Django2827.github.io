@@ -1,14 +1,15 @@
 :root {
-  --text: #FF8559;
-  --text-h: #517E97;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --box: #E1EDF4;
-  --accent: #aa3bff;
+  --text: #1A3646;
+  --text-h: #315F78;
+  --bg: #E1EDF4;
+  --border: #B9CEDB;
+  --code-bg: #EEF4F8;
+  --box: #F7FAFC;
+  --accent: #315F78;
   --accent-bg: #C7DBE6;
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
+  --accent-border: rgba(49, 95, 120, 0.5);
+  --social-bg: rgba(247, 250, 252, 0.6);
+  --rain: rgba(81, 126, 151, 0.4);
   --shadow:
     rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
 
@@ -21,6 +22,9 @@
   color-scheme: light dark;
   color: var(--text);
   background: var(--bg);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  min-height: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -31,29 +35,63 @@
   }
 }
 
+/* Dark: follows system preference unless the user forced light */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --text: #374c60;
-    --text-h: #030508;
-    --bg: linear-gradient(to bottom, #152646, #030508);
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --box: linear-gradient(to bottom, #240b0c, #100303);
-    --accent: #c084fc;
-    --accent-bg: linear-gradient(to bottom, #152646, #030508);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
+  :root:not([data-theme='light']) {
+    --text: #C9DCE8;
+    --text-h: #E1EDF4;
+    --bg: #0C151B;
+    --border: #2A4352;
+    --code-bg: #14232C;
+    --box: #14232C;
+    --accent: #7FA7C0;
+    --accent-bg: #1C303B;
+    --accent-border: rgba(127, 167, 192, 0.5);
+    --social-bg: rgba(28, 48, 59, 0.5);
+    --rain: rgba(229, 72, 77, 0.5);
     --shadow:
       rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
   }
 
-  #social .button-icon {
+  :root:not([data-theme='light']) #social .button-icon {
     filter: invert(1) brightness(2);
   }
 }
 
-body {
-  margin: 0;
+/* Dark: manual toggle */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+  --text: #C9DCE8;
+  --text-h: #E1EDF4;
+  --bg: #0C151B;
+  --border: #2A4352;
+  --code-bg: #14232C;
+  --box: #14232C;
+  --accent: #7FA7C0;
+  --accent-bg: #1C303B;
+  --accent-border: rgba(127, 167, 192, 0.5);
+  --social-bg: rgba(28, 48, 59, 0.5);
+  --rain: rgba(229, 72, 77, 0.5);
+  --shadow:
+    rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+}
+
+:root[data-theme='dark'] #social .button-icon {
+  filter: invert(1) brightness(2);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+}
+
+/* Rain canvas sits behind everything and never blocks clicks */
+.rain-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
 }
 
 #root {
@@ -65,6 +103,8 @@ body {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 h1,
