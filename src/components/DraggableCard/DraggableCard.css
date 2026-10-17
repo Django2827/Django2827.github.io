@@ -12,6 +12,7 @@
   grid-template-columns: repeat(4, 1fr); /* 4 apps per row */
   gap: 6px;
   padding: 6px;
+  position: relative;
 }
 
 .draggable-card:active {
