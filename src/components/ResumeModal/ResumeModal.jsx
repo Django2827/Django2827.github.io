@@ -21,8 +21,14 @@ function ResumeContent({ position }) {
       ref={setNodeRef}
       className="resume-content"
       style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        right: 'auto',
+        bottom: 'auto',
+        margin: 0,
         transform: `translate(calc(-50% + ${x}px), calc(-50% + ${y}px))`,
-        zIndex: getZ('resume-window'),  
+        zIndex: getZ('resume-window'), // keep this line only if you added the stacking code
       }}
       onPointerDownCapture={() => bringToFront('resume-window')}
       onPointerDown={(e) => e.stopPropagation()}
@@ -30,6 +36,9 @@ function ResumeContent({ position }) {
     >
       <div className="resume-handle" {...listeners} {...attributes}>
         ⠿ Drag to move
+        <Dialog.Close asChild>
+          <button className="resume-close" aria-label="Close" onPointerDown={(e) => e.stopPropagation()}>×</button>
+        </Dialog.Close>
       </div>
 
       <Dialog.Title className="resume-title">Resume</Dialog.Title>
@@ -42,10 +51,6 @@ function ResumeContent({ position }) {
       </Dialog.Description>
 
       <iframe className="resume-frame" src={resumeUrl} title="Resume PDF" />
-
-      <Dialog.Close asChild>
-        <button className="resume-close" aria-label="Close">×</button>
-      </Dialog.Close>
     </Dialog.Content>
   )
 }

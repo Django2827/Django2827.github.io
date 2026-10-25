@@ -1,5 +1,5 @@
 :root {
-  --text: #1A3646;
+  --text: rgb(229, 72, 77);
   --text-h: #315F78;
   --bg: #E1EDF4;
   --border: #B9CEDB;
@@ -38,7 +38,7 @@
 /* Dark: follows system preference unless the user forced light */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme='light']) {
-    --text: #C9DCE8;
+    --text: rgba(247, 250, 252);
     --text-h: #E1EDF4;
     --bg: #0C151B;
     --border: #2A4352;
